@@ -38,7 +38,15 @@
             <v-chart :options="chartOptions" />
             <div class="sales-view-list">
               <div class="list-item" v-for="item in rankData" :key="item.no">
-                <div class="list-item-no">{{ item.no }}</div>
+                <!-- <div class="list-item-no" :class="item.no <= 3 ? 'top-no' : ''">
+                  {{ item.no }}
+                </div> -->
+                <div></div>
+                <div :class="['list-item-no', item.no <= 3 ? 'top-no' : '']">
+                  {{ item.no }}
+                </div>
+                <div class="list-item-name">{{ item.name }}</div>
+                <div class="list-item-money">{{ item.money }}</div>
               </div>
             </div>
           </div>
@@ -141,6 +149,21 @@ export default {
       justify-content: flex-end;
       .sales-view-date-picker {
         margin-left: 20px;
+      }
+    }
+    .sales-view-chart-wrapper {
+      display: flex;
+      height: 270px;
+      .echarts {
+        flex: 0, 0, 70%;
+        width: 70%;
+        height: 100%;
+      }
+      .sales-view-list {
+        flex: 1;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
       }
     }
   }
